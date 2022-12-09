@@ -1,6 +1,5 @@
 # LeetcodeThings
 ## *随笔（C++）*
-
 &nbsp;
 ## 1. 字符串
 - **字符串与数字转换**<br>
@@ -11,7 +10,6 @@ C++中当需要将字母与数字进行转换时（加减乘除）可以直接�
     如[1812. 判断国际象棋棋盘中一个格子的颜色](https://leetcode.cn/problems/determine-color-of-a-chessboard-square/description/)
 
 - 
-&nbsp;
 ---
 ## 2. 数学
 - **进制转换**<br>
