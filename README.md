@@ -27,6 +27,15 @@ vector<int> count(26);
 - **在数组原位置操作**
 为了提高效率，通常可以在数组原位置进行操作（赋值等），避免多次循环影响时间复杂度。  
 如[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/) 
+- **模拟全字母**  
+用vector数组来表示26位字母位数，每出现一次在对应位置为true（或计数+1）
+```cpp
+vector<int> exist(26);
+for (auto c : sentence) {
+    exist[c - 'a'] = true;
+}
+```
+如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
 
 
 ---
@@ -52,3 +61,13 @@ while (n) {
 ```
 如[1780. 判断一个数字是否可以表示成三的幂的和](https://leetcode.cn/problems/check-if-number-is-a-sum-of-powers-of-three/description/)
 - 
+
+
+---
+## 5. 位运算
+- **模拟全字母**<br>
+由于字符集仅有26个，我们可以使用一个长度为26的二进制数字来表示字符集合，该二进制数字使用32位带符号整型变量（int类型）即可。出现第几个字符就将其左移对应位数，再进行或运算。最后判断是否为$2^{26}-1$（即所有0-25位上的数字都为1，其余为0）返回true。
+```cpp
+state |= 1 << (c - 'a');
+```
+如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
