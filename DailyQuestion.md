@@ -17,3 +17,14 @@
 ## **位运算**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
 由于字符集仅有26个，我们可以使用一个长度为26的二进制数字来表示字符集合，该二进制数字使用32位带符号整型变量（int类型）即可。出现第几个字符就将其左移对应位数，再进行或运算。最后判断是否为$2^{26}-1$（即所有0-25位上的数字都为1，其余为0）返回true。
+
+## **字符串模拟**
+- **12.15：**[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/)  
+int类型到字符串的转换：```to_string()```  
+字符串类型转int：```stoi()```  
+字符或字符串类型到int类型的转换：```(c - 'a') (c - '0')```or通过ascii码转换
+```cpp
+char a = '0';
+int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
+int x = ia - 48; // 输出0
+```
