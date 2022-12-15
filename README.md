@@ -37,7 +37,8 @@ vector<int> count(26);
 ## 3. 数组
 - **在数组原位置操作**
 为了提高效率，通常可以在数组原位置进行操作（赋值等），避免多次循环影响时间复杂度。  
-如[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/) 
+如[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/)
+
 - **模拟全字母**  
 用vector数组来表示26位字母位数，每出现一次在对应位置为true（或计数+1）
 ```cpp
@@ -47,6 +48,14 @@ for (auto c : sentence) {
 }
 ```
 如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
+
+- **贪心**   
+求当前最优值，好像有很多循环..
+```cpp
+long long left = abs(accumulate(nums.begin(), nums.end(), 0l) - goal); // 0L代表返回的和是长整型
+return left / limit + (left % limit != 0); // 记住这个求剩余数的公式！！
+```
+如[1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/) 
 
 
 ---

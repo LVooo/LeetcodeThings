@@ -5,6 +5,7 @@
 ## **贪心**
 - **12.11：**[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/)   
   从左向右依次遍历，使每一个数都满足比前一个数大1，count只需加上两者相减的值
+- **12.16：** [1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/)（详解在数组部分）
 
 ## **循环遍历**
 - **12.12：**[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)  
@@ -13,6 +14,12 @@
 ## **数组**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)  
 用vector数组来表示26位字母位数，每出现一次在对应位置上加1
+- **12.16：** [1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/)（需解决**溢出问题**！）  
+先使用accumulate函数求出原始数组的总和(注意要用long值，int会溢出内存)，用其绝对值，再计算剩余所需值：
+```cpp
+long long left = abs(accumulate(nums.begin(), nums.end(), 0l) - goal); // 0L代表返回的和是长整型
+return left / limit + (left % limit != 0); // 记住这个求剩余数的公式！！
+```
 
 ## **位运算**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
