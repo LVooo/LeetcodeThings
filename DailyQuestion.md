@@ -35,3 +35,37 @@ char a = '0';
 int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
+
+## **字符串匹配**
+- **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  
+用一个数组的子数组来构成不相交的另外一个二维数组。利用双指针，第一个i指向需要匹配的二维数组groups，第二个指针k指向遍历数组nums。如果找到对应数组，则k加上二维数组group[i]的长度，并将groups的下标i加1；若nums[k]与group[i]不相同，那么直接令k加1。**贪心**遍历结束时判断i是否等于groups本身长度即可。
+```cpp
+bool check(vector<int> &g, vector<int> &num, int k)
+{
+    for (int i = 0; i < g.size(); i ++)
+    {
+        if (num[k+i] != g[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
+      int i = 0;
+      for (int k = 0; k < nums.size() && i < groups.size();)
+      {
+          if (check(groups[i], nums, k))
+          {
+              k += groups[i].size();
+              i ++;
+          } else
+          {
+              k ++;
+          }
+      }
+
+      return i == groups.size();
+}
+```
