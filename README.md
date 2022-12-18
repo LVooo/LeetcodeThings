@@ -91,6 +91,32 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ```
 如**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
 
+- **计数**  
+计算数组中只出现一次的数，可以两次循环遍历计算count数量是否为1
+```cpp
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n = nums.size();
+        for (int i = 0; i < n; i ++)
+        {
+            int cur = nums[i];
+            int count = 0;
+            for (int j = 0; j < n; j ++)
+            {
+                if (nums[j] == cur)
+                    count ++;
+            }
+            if (count == 1)
+            {
+                return cur;
+            }
+        }
+        return -1;
+    }
+};
+```
+
 
 ---
 ## 4. 数学
@@ -119,9 +145,18 @@ while (n) {
 
 ---
 ## 5. 位运算
-- **模拟全字母**<br>
+- **模拟全字母**  
 由于字符集仅有26个，我们可以使用一个长度为26的二进制数字来表示字符集合，该二进制数字使用32位带符号整型变量（int类型）即可。出现第几个字符就将其左移对应位数，再进行或运算。最后判断是否为$2^{26}-1$（即所有0-25位上的数字都为1，其余为0）返回true。
 ```cpp
 state |= 1 << (c - 'a');
 ```
 如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
+
+- **计数**  
+当求一个数组里的元素只出现一次或两次，求只出现一次的数字的时候，我们可以使用异或运算。因为两个相同的元素异或的值为0。
+```cpp
+int res = 0;
+for (int &num : nums) res ^= num;
+return res;
+```
+如[136. 只出现一次的数字](https://leetcode.cn/problems/single-number/description/)
