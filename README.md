@@ -160,3 +160,168 @@ for (int &num : nums) res ^= num;
 return res;
 ```
 如[136. 只出现一次的数字](https://leetcode.cn/problems/single-number/description/)
+- 
+
+
+---
+## 6. 图
+- **广度优先搜索**  
+思路：  
+若要判断从顶点source到顶点destination的连通性，需要我们从起始顶点source开始按层依次遍历每一层的顶点。遍历过程中我们使用队列存储最近访问过的顶点，同时记录每个顶点的访问状态。每次从队列中取出顶点vertex时，将其未访问过的邻接顶点入队列。  
+算法步骤：  
+初始时将顶点source设为已访问并将其入队列。每次将队列中的节点vertex出队列，并将与vertex相邻且未访问的顶点next入队列，并将next状态设为已访问。当队列为空或访问到顶点destination时遍历结束，返回顶点destination的访问状态即可。
+```cpp
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        vector<vector<int>> adj(n); //对于vector构建出来的二维数组没有进行空间的申请，比如有些返回类型为vector<vector<>>类型的函数，对于这个返回值vector表示的二维数组要先申请大小，否则使用下标访问就会报这类错误。
+        for (int i = 0; i < edges.size(); i ++)
+        {
+            int x = edges[i][0], y = edges[i][1];
+            adj[x].emplace_back(y);
+            adj[y].emplace_back(x);
+        }
+
+        vector<bool> visted(n, false);
+        visted[source] = true;
+        queue<int> qu;
+        qu.emplace(source);
+        while (!qu.empty())
+        {
+            int next = qu.front();
+            qu.pop();
+            if (next == destination)
+            {
+                break;
+            }
+            for (auto n : adj[next])
+            {
+                if (!visted[n])
+                {
+                    visted[n] = true;
+                    qu.emplace(n);
+                }
+            }
+        }
+        return visted[destination];
+    }
+};
+```
+时间复杂度：O(n+m)，n：图中顶点数目，m：图中边的数目，每个定点或者每条边只需访问一次  
+空间复杂度：O(n+m)，主要取决于邻接点列表、记录访问状态的数组和**队列**
+
+- **深度优先搜索**  
+思路：  
+从顶点source开始依次遍历每一条可能的路径，判断可以到达顶点destination，同时还需要记录每个顶点的访问状态防止重复访问。  
+算法步骤：  
+首先从顶点source开始遍历并进行递归搜索。搜索时每次访问一个顶点vertex时，如果vertex等于destination直接返回，否则将该顶点设为已放问，并递归访问与vertex相邻且未访问的顶点next。如果通过next的路径可以访问到destination，此时直接返回true。当访问完所有的邻接节点仍然没有访问到destination时，返回false。
+```cpp
+class Solution {
+public:
+    bool dfs(int source, int destination, vector<vector<int>> &adj, vector<bool> &visted)
+    {
+        if (source == destination)
+        {
+            return true;
+        }
+
+        visted[source] = true; // 别忘了初始化！
+        for (auto &next : adj[source])
+        {
+            if (!visted[next] && dfs(next, destination, adj, visted)) // 递归=dfs判断
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        vector<vector<int>> adj(n);
+        for (auto &&edge : edges)
+        {
+            int x = edge[0], y = edge[1];
+            adj[x].emplace_back(y);
+            adj[y].emplace_back(x);
+        }
+        vector<bool> visted(n, false);
+        return dfs(source, destination, adj, visted);
+    }
+};
+```
+时间复杂度：O(n+m)，n：图中顶点数目，m：图中边的数目，每个定点或者每条边只需访问一次  
+空间复杂度：O(n+m)，主要取决于邻接点列表、记录访问状态的数组和**递归调用栈**
+
+- **并查集**  
+思路：  
+我们将图中的每个强连通分量视为一个集合，强连通分量中任意两点均可达。如果两个点source和destination处在同一个强连通分量中，则两点一定可连通，因此连通性问题可以使用并查集解决。  
+算法步骤：  
+并查集初始化时，n个顶点分别属于n个不同的集合，每个集合只包含一个顶点。初始化之后遍历每条边，由于图中的每条边均为双向边，因此将同一条边连接的两个顶点所在的集合做合并。在遍历完所有的边之后，判断顶点source和顶点destination是否在同一个集合中，如果两个顶点在同一集合则两个顶点连通。
+```cpp
+class Union {
+public:
+    Union(int n)
+    {
+        parent.resize(n); // 初始化设置容器大小，还可以使用parent = vecotr<int>(n);
+        rank.resize(n);
+        for (int i = 0; i < n; i ++)
+        {
+            parent[i] = i; // 初始化每个顶点的parent为自己
+        }
+    }
+
+    void v(int a, int b)
+    {
+        int roota = find(a);
+        int rootb = find(b);
+        if (roota != rootb)
+        {
+            if (rank[roota] > rank[rootb]) // 判断哪个root在更前面即等级更大；这里的rank判断可加可不加（只是让parent节点更严谨），不影响结果
+            {
+                parent[rootb] = roota;
+            }
+            else if (rank[roota] < rank[rootb])
+            {
+                parent[roota] = rootb;
+            }
+            else
+            {
+                parent[rootb] = roota; // 设置最开始的root
+                rank[roota] ++; // root级别+1
+            }
+        }
+    }
+
+    int find(int x)
+    {
+        if (parent[x] != x)
+        {
+            parent[x] = find(parent[x]); // 递归找root
+        }
+        return parent[x];
+    }
+
+    bool connect(int a, int b)
+    {
+        return (find(a) == find(b));
+    }
+
+private:
+    vector<int> parent;
+    vector<int> rank; // 可加可不加
+};
+
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        // 此处就不需要定义邻边容器了
+        Union uni(n); // 初始化
+        for (auto &edge : edges)
+        {
+            uni.v(edge[0], edge[1]); // 相邻两边做合并
+        }
+        
+        return uni.connect(source, destination);
+    }
+};
+```

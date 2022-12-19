@@ -69,3 +69,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
       return i == groups.size();
 }
 ```
+
+## **图论**
+- **12.19：**[1971. 寻找图中是否存在路径](https://leetcode.cn/problems/find-if-path-exists-in-graph/description/)  
+判断源点与目标点是否连通，结合DFS、BFS、并查集于一身的简单好题。
