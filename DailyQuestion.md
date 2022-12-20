@@ -73,3 +73,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ## **图论**
 - **12.19：**[1971. 寻找图中是否存在路径](https://leetcode.cn/problems/find-if-path-exists-in-graph/description/)  
 判断源点与目标点是否连通，结合DFS、BFS、并查集于一身的简单好题。
+
+## **二分查找**
+- **12.20：**如[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)  
+此题使用操作数作为判断条件来夹出数组内每一个数在满足最大操作数的条件下能分成的最小值。

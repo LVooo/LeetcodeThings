@@ -89,7 +89,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
       return i == groups.size();
 }
 ```
-如**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
+如[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
 
 - **计数**  
 计算数组中只出现一次的数，可以两次循环遍历计算count数量是否为1
@@ -116,6 +116,32 @@ public:
     }
 };
 ```
+- **二分查找**  
+一般二分查找的下界为1，上界为数组nums中的最大值。当二分查找到y（满足要求的答案）时，那么所有大于等于y的是满足要求的，而小于y的都是不满足要求的，这个y就是我们二分查找夹出来的答案。当小于等于判断条件时我们调整上届，当越过判断条件时我们调整下届。
+```cpp
+int left = 1, right = *max_element(nums.begin(), nums.end());
+int res = 0;
+while (left <= right)
+{
+    int op = 0;
+    int mid =left + (right - left) / 2;
+    for (auto &num : nums)
+    {
+        op += (num - 1) / mid;
+    }
+    if (op <= maxOperations)
+    {
+        res = mid;
+        right = mid - 1;
+    }
+    else
+    {
+        left = mid + 1;
+    }
+}
+return res;
+```
+如[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)
 
 
 ---
