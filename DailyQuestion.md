@@ -4,8 +4,13 @@
 
 ## **贪心**
 - **12.11：**[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/)   
-  从左向右依次遍历，使每一个数都满足比前一个数大1，count只需加上两者相减的值
-- **12.16：** [1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/)（详解在数组部分）
+从左向右依次遍历，使每一个数都满足比前一个数大1，count只需加上两者相减的值
+- **12.16：**[1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/)（详解在数组部分）
+- **12.21：**[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/)  
+先排序，排序后分为两种情况：
+1. a+b <= c，此时可以拿c去跟a或b中每一个石子两两配对，答案为a+b
+2. a+b > c，此时先拿c去跟a或b中最大的匹配，当c为0时，a和b再开始两两配对。所以答案为c+(a+b-c)/2  
+我们可以用max(a,b,c)来求出排序后的c，然后用abc的和减去最大值求出排序后的a+b来模拟排序
 
 ## **循环遍历**
 - **12.12：**[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)  

@@ -35,11 +35,7 @@ vector<int> count(26);
 
 ---
 ## 3. 数组
-- **在数组原位置操作**
-为了提高效率，通常可以在数组原位置进行操作（赋值等），避免多次循环影响时间复杂度。  
-如[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/)
-
-- **模拟全字母**  
+### 3.1 模拟全字母
 用vector数组来表示26位字母位数，每出现一次在对应位置为true（或计数+1）
 ```cpp
 vector<int> exist(26);
@@ -49,15 +45,38 @@ for (auto c : sentence) {
 ```
 如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
 
-- **贪心**   
-求当前最优值，好像有很多循环..
+### 3.2 贪心
+- **在数组原位置操作**  
+为了提高效率，通常可以在数组原位置进行操作（赋值等），避免多次循环影响时间复杂度。  
+如[1827. 最少操作使数组递增](https://leetcode.cn/problems/minimum-operations-to-make-the-array-increasing/)
+- **求当前最优值**，好像有很多循环..
 ```cpp
 long long left = abs(accumulate(nums.begin(), nums.end(), 0l) - goal); // 0L代表返回的和是长整型
 return left / limit + (left % limit != 0); // 记住这个求剩余数的公式！！
 ```
-如[1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/) 
+如[1785. 构成特定和需要添加的最少元素](https://leetcode.cn/problems/minimum-elements-to-add-to-form-a-given-sum/description/)
+- **每次在原数组上操作再排序，求最优值**
+```cpp
+int maximumScore(int a, int b, int c) {
+    vector<int> all = {a, b, c};
+    int res = 0;
+    while (true)
+    {
+        sort(all.begin(), all.end());
+        if (all[1] == 0)
+        {
+            break;
+        }
+        res += 1;
+        all[1] --;
+        all[2] --;
+    }
+    return res;
+}
+```
+如[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/)  
 
-- **字符串匹配**   
+### 3.3 字符串匹配 
 用一个数组的子数组来构成不相交的另外一个二维数组。利用双指针，第一个i指向需要匹配的二维数组groups，第二个指针k指向遍历数组nums。如果找到对应数组，则k加上二维数组group[i]的长度，并将groups的下标i加1；若nums[k]与group[i]不相同，那么直接令k加1。**贪心**遍历结束时判断i是否等于groups本身长度即可。
 ```cpp
 bool check(vector<int> &g, vector<int> &num, int k)
@@ -91,7 +110,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ```
 如[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
 
-- **计数**  
+### 3.4 计数
 计算数组中只出现一次的数，可以两次循环遍历计算count数量是否为1
 ```cpp
 class Solution {
@@ -116,7 +135,7 @@ public:
     }
 };
 ```
-- **二分查找**  
+### 3.5 二分查找
 一般二分查找的下界为1，上界为数组nums中的最大值。当二分查找到y（满足要求的答案）时，那么所有大于等于y的是满足要求的，而小于y的都是不满足要求的，这个y就是我们二分查找夹出来的答案。当小于等于判断条件时我们调整上届，当越过判断条件时我们调整下届。
 ```cpp
 int left = 1, right = *max_element(nums.begin(), nums.end());
@@ -146,7 +165,7 @@ return res;
 
 ---
 ## 4. 数学
-- **进制转换**<br>
+4.1 **进制转换**<br>
 十进制转任何进制都是采用整数除n取余倒序排列，小数乘n取整顺序排列的方法。
 三进制问题比如32.12转三进制<br>
 整数部分：<br>
@@ -166,7 +185,13 @@ while (n) {
 }
 ```
 如[1780. 判断一个数字是否可以表示成三的幂的和](https://leetcode.cn/problems/check-if-number-is-a-sum-of-powers-of-three/description/)
-- 
+
+- **贪心**  
+我们可以用max(a,b,c)来求出排序后的c，然后用abc的和减去最大值求出排序后的a+b来模拟排序，排序后再判断不同情况  
+先排序，排序后分为两种情况：
+1. a+b <= c，此时可以拿c去跟a或b中每一个石子两两配对，答案为a+b
+2. a+b > c，此时先拿c去跟a或b中最大的匹配，当c为0时，a和b再开始两两配对。所以答案为c+(a+b-c)/2  
+如[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/)  
 
 
 ---
