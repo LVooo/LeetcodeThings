@@ -161,7 +161,16 @@ while (left <= right)
 return res;
 ```
 如[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)
-
+### 3.6 求最大差值利润值
+暴力循环i从0开始j从i+1开始遍历整个数组往往会超时。所以一次遍历使用一个min变量记录遍历过程中出现的最小值，再用另一个变量记录最大的差值即可。
+```cpp
+int minPrice = INT_MAX, maxProfit = 0;
+for (int &price : prices)
+{
+    minPrice = min(minPrice, price);
+    maxProfit = max(maxProfit, price - minPrice);
+}
+```
 
 ---
 ## 4. 数学
