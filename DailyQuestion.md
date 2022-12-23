@@ -40,6 +40,11 @@ char a = '0';
 int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
+- [2011. 执行操作后的变量值](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/)  
+一次遍历找标志性+或—来对结果进行加减，使用字符串的find函数
+```cpp
+operation.find('-') != string::npos
+```
 
 ## **字符串匹配**
 - **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  

@@ -2,15 +2,15 @@
 ## *随笔（C++）*
 &nbsp;
 ## 1. 字符串
-- **字符串与数字转换**<br>
+### 1.1字符串与数字转换
 C++中当需要将字母与数字进行转换时（加减乘除）可以直接用其减去对应的起始字符（‘a’）再与数字相加，
 ```cpp
 coordinates[0] - 'a'
 ```
 如[1812. 判断国际象棋棋盘中一个格子的颜色](https://leetcode.cn/problems/determine-color-of-a-chessboard-square/description/)
 
-- **模拟**  
-用字符串模拟数字串。  
+### 1.2模拟
+- 用字符串模拟数字串。  
 int类型到字符串的转换：```to_string()```  
 字符串类型转int：```stoi()```  
 字符或字符串类型到int类型的转换：```(c - 'a') (c - '0')```or通过ascii码转换
@@ -20,6 +20,12 @@ int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
 如[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/) 
+- 模拟加减
+一次遍历找标志性+或—来对结果进行加减，使用字符串的find函数
+```cpp
+operation.find('-') != string::npos
+```
+如[2011. 执行操作后的变量值](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/)  
 
 
 ---
