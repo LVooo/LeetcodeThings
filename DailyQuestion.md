@@ -11,6 +11,8 @@
 1. a+b <= c，此时可以拿c去跟a或b中每一个石子两两配对，答案为a+b
 2. a+b > c，此时先拿c去跟a或b中最大的匹配，当c为0时，a和b再开始两两配对。所以答案为c+(a+b-c)/2  
 我们可以用max(a,b,c)来求出排序后的c，然后用abc的和减去最大值求出排序后的a+b来模拟排序
+- **12.24**[1754. 构造字典序最大的合并字符串](https://leetcode.cn/problems/largest-merge-of-two-strings/)  
+拿两个字符串做排序合并时，可以用while两个字符串遍历是否到结尾当判断条件。本题因为要找后缀和最大的，所以当遍历到i和j的元素相等时需要考虑他们后面的元素谁更大；此时加入k来遍历到他们后缀不同的位置，判断大小进行push_back操作即可。最后别忘了加上没有遍历完的那个的剩余元素。
 
 ## **循环遍历**
 - **12.12：**[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)  
