@@ -87,5 +87,9 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 判断源点与目标点是否连通，结合DFS、BFS、并查集于一身的简单好题。
 
 ## **二分查找**
-- **12.20：**如[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)  
+- **12.20：**[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)  
 此题使用操作数作为判断条件来夹出数组内每一个数在满足最大操作数的条件下能分成的最小值。
+
+## **找规律**
+- **12.25：**[1739. 放置盒子](https://leetcode.cn/problems/building-boxes/description/)  
+摆放盒子，如果一个盒子上面有盒子，则这个盒子的四周应被完全环绕，所以此时靠墙是用盒最少的办法，求最后摆放在地上的所有盒子数量。

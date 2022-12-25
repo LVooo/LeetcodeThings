@@ -36,6 +36,7 @@ operation.find('-') != string::npos
 我们直接使用```substr()```来比较两个字符串i和j位置的后缀和大小，要记得加上越界限定条件```if (i < word1.size() && word1.substr(i) > word2.substr(j))```  
 如[1754. 构造字典序最大的合并字符串](https://leetcode.cn/problems/largest-merge-of-two-strings/) 
 
+
 ---
 ## 2. 哈希表
 ## 2.1 用数组vector模拟哈希表计数
@@ -214,8 +215,36 @@ while (n) {
 先排序，排序后分为两种情况：
 1. a+b <= c，此时可以拿c去跟a或b中每一个石子两两配对，答案为a+b
 2. a+b > c，此时先拿c去跟a或b中最大的匹配，当c为0时，a和b再开始两两配对。所以答案为c+(a+b-c)/2  
-如[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/)  
+如[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/) 
 
+### 4.3 找规律
+- **放置盒子**  
+如[1739. 放置盒子](https://leetcode.cn/problems/building-boxes/description/)  
+摆放盒子，如果一个盒子上面有盒子，则这个盒子的四周应被完全环绕，所以此时靠墙是用盒最少的办法，求最后摆放在地上的所有盒子数量。
+当我们要放置n个盒子时，我们要完整的放满i-1层，剩余的盒子再用第i层的接触地面的j个盒子来填充。此时的最小和n应该满足：(1) + (1+2) + (1+2+3) + ... + (1+2+...+i-1) 最后加上由j个盒子所带来的收益：j*(j+1)/2；上述哪个式子利用求和公式得为：2\*1/2 + 3\*2/2 + ... + i*(i-1)/2  
+cur，i，j都初始化为1    
+在代码中我们使用cur去维护第i层最多可以增加多少个放置的盒子，如果当前n>cur，就拿总数量n减去cur，然后递增i到下一层，否则这个i就是我们要找的那一层，更新i后更新cur=cur+i。  
+在填满i-1层后我们去找j，维护变量cur为在第i层中再添加一个接触地面的盒子时会增加多少个可以放置的盒子，如果上面那一步剩下的n大于cur，则将n减去cur再递增j和cur都加1，否则j就是我们要找的接触地面的数量。  
+最终我们完整的放满了前i-1层，并且在第i层放了j个接触地面的盒子，因此最终接触地面盒子的答案为：1+2+...+(i-1)+j = i*(i-1)/2 + j
+```cpp
+int minimumBoxes(int n) {
+    int cur = 1, i = 1, j = 1;
+    while (n > cur)
+    {
+        n -= cur;
+        i ++;
+        cur += i;
+    }
+    cur = 1;
+    while (n > cur)
+    {
+        n -= cur;
+        j ++;
+        cur ++;
+    }
+    return (i - 1)*i/2 + j;
+}
+```
 
 ---
 ## 5. 位运算
