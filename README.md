@@ -176,6 +176,7 @@ while (left <= right)
 return res;
 ```
 如[1760. 袋子里最少数目的球](https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/)
+
 ### 3.6 求最大差值利润值
 暴力循环i从0开始j从i+1开始遍历整个数组往往会超时。所以一次遍历使用一个min变量记录遍历过程中出现的最小值，再用另一个变量记录最大的差值即可。
 ```cpp
@@ -184,6 +185,34 @@ for (int &price : prices)
 {
     minPrice = min(minPrice, price);
     maxProfit = max(maxProfit, price - minPrice);
+}
+```
+
+### 3.7 数学方法
+- **等差数列求同构子字符串**  
+一个字符串所有字符相同则为同构子字符串，且子字符串是字符串中的一个连续序列。双层for循环会超时，用等差数列求和方法一次遍历即可。  
+如果题目提到答案可能很大，要注意数据范围问题，使用```long long```定义数据。prev为第一个子字符，遍历时cnt计算每个字符出现次数，如果碰到不相同的字符则用等差数列求和加到res中并重置prev和cnt：
+```cpp
+int countHomogenous(string s) {
+    long long res = 0;
+    long long mod = 1e9+7;
+    int cnt = 0;
+    char prev = s[0];
+    for (auto &c:s)
+    {
+        if (c == prev)
+        {
+            cnt ++;
+        }
+        else
+        {
+            res += (long long)(cnt+1)*cnt / 2;
+            prev = c;
+            cnt = 1;
+        }
+    }
+    res += (long long)(cnt+1)*cnt / 2;
+    return res % mod;
 }
 ```
 

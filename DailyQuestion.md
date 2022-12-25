@@ -91,5 +91,9 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 此题使用操作数作为判断条件来夹出数组内每一个数在满足最大操作数的条件下能分成的最小值。
 
 ## **找规律**
+等差数列：
 - **12.25：**[1739. 放置盒子](https://leetcode.cn/problems/building-boxes/description/)  
 摆放盒子，如果一个盒子上面有盒子，则这个盒子的四周应被完全环绕，所以此时靠墙是用盒最少的办法，求最后摆放在地上的所有盒子数量。
+
+- **12.27：**[1759. 统计同构子字符串的数目](https://leetcode.cn/problems/count-number-of-homogenous-substrings/)  
+一个字符串所有字符相同则为同构子字符串，且子字符串是字符串中的一个连续序列。双层for循环会超时，用等差数列求和方法一次遍历即可。
