@@ -20,7 +20,7 @@ int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
 如[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/) 
-- 模拟加减
+- **模拟加减**
 一次遍历找标志性+或—来对结果进行加减，使用字符串的find函数
 ```cpp
 operation.find('-') != string::npos
@@ -35,6 +35,19 @@ operation.find('-') != string::npos
 或者：  
 我们直接使用```substr()```来比较两个字符串i和j位置的后缀和大小，要记得加上越界限定条件```if (i < word1.size() && word1.substr(i) > word2.substr(j))```  
 如[1754. 构造字典序最大的合并字符串](https://leetcode.cn/problems/largest-merge-of-two-strings/) 
+- **模拟不重复滑动窗口**  
+贪心模拟不重复滑动窗口只需一次遍历如果找到对应元素直接```i += 移动范围```即可
+```cpp
+for (int i = 0; i < s.size(); i ++)
+    {
+        if (s[i] == 'X')
+        {
+            res ++;
+            i += 2;
+        }
+    }
+```
+如[2027. 转换字符串的最少操作次数](https://leetcode.cn/problems/minimum-moves-to-convert-string/) 
 
 
 ---
