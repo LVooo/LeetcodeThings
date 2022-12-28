@@ -105,6 +105,7 @@ int maximumScore(int a, int b, int c) {
 如[1753. 移除石子的最大得分](https://leetcode.cn/problems/maximum-score-from-removing-stones/description/)
 
 ### 3.3 字符串匹配 
+- **双指针指向两个数组**  
 用一个数组的子数组来构成不相交的另外一个二维数组。利用双指针，第一个i指向需要匹配的二维数组groups，第二个指针k指向遍历数组nums。如果找到对应数组，则k加上二维数组group[i]的长度，并将groups的下标i加1；若nums[k]与group[i]不相同，那么直接令k加1。**贪心**遍历结束时判断i是否等于groups本身长度即可。
 ```cpp
 bool check(vector<int> &g, vector<int> &num, int k)
@@ -137,6 +138,29 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 }
 ```
 如[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
+
+- **双指针指向单个数组**  
+使用while循环来限定i < j的判定条件，注意每层i++或j--的循环都要加上i小于等于j的判断条件否则会越界。如下面题目是找一个字符串左右两端相等的前缀和后缀和：
+```cpp
+int minimumLength(string s) {
+    int n = s.size();
+    int i = 0, j = n - 1;
+    while (i < j && s[i] == s[j])
+    {
+        char val = s[i];
+        while (i <= j && s[i] == val)
+        {
+            i ++;
+        }
+        while (i <= j && s[j] == val)
+        {
+            j --;
+        }
+    }
+    return j - i + 1;
+}
+```
+如[1750. 删除字符串两端相同字符后的最短长度](https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/)
 
 ### 3.4 计数
 计算数组中只出现一次的数，可以两次循环遍历计算count数量是否为1

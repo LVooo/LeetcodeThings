@@ -99,3 +99,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 
 - **12.27：**[1759. 统计同构子字符串的数目](https://leetcode.cn/problems/count-number-of-homogenous-substrings/)  
 一个字符串所有字符相同则为同构子字符串，且子字符串是字符串中的一个连续序列。双层for循环会超时，用等差数列求和方法一次遍历即可。
+
+## **双指针**
+- **12.28：**[1750. 删除字符串两端相同字符后的最短长度](https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/)  
+利用双指针删除相同的前缀和后缀，要多加注意几个判定条件。
