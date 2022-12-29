@@ -33,6 +33,8 @@ return left / limit + (left % limit != 0); // 记住这个求剩余数的公式�
 ## **位运算**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
 由于字符集仅有26个，我们可以使用一个长度为26的二进制数字来表示字符集合，该二进制数字使用32位带符号整型变量（int类型）即可。出现第几个字符就将其左移对应位数，再进行或运算。最后判断是否为$2^{26}-1$（即所有0-25位上的数字都为1，其余为0）返回true。
+- **12.29：**[2032. 至少在两个数组中出现的值](https://leetcode.cn/problems/two-out-of-three/description/)  
+因为该题一共只有三个数组，可以用二进制位运算代表三位，如果只出现一次的话那么他只存在于第一位中，此时他的二进制最低位的值-1为0，所以做与运算即可
 
 ## **字符串模拟**
 - **12.15：**[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/)  

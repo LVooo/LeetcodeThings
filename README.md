@@ -329,7 +329,34 @@ for (int &num : nums) res ^= num;
 return res;
 ```
 如[136. 只出现一次的数字](https://leetcode.cn/problems/single-number/description/)
-- 
+
+### 5.3 查找三个数组中出现的共同值
+如[2032. 至少在两个数组中出现的值](https://leetcode.cn/problems/two-out-of-three/description/)  
+因为该题一共只有三个数组，可以用二进制位运算代表三位，如果只出现一次的话那么他只存在于第一位中，此时他的二进制最低位的值-1为0，所以做与运算即可
+```cpp
+unordered_map<int, int> mp; // 用哈希表存二进制三位数出现次数
+for (auto &n : nums1)
+{
+    mp[n] = 1; // 首数组，初始化所有值的二进制末位为1，001
+}
+for (auto &n : nums2)
+{
+    mp[n] |= 2; // 二进制第二位，如果出现与首数组相同的数据则为011
+}
+for (auto &n : nums3)
+{
+    mp[n] |= 4; // 二进制第三位，如果出现与首数组相同的数据则为111
+}
+vector<int> res;
+for (auto &[k, v] : mp)
+{
+    if (v & (v-1)) // 当且仅当为001的时候，它只出现一次，1-1=0
+    {
+        res.emplace_back(k);
+    }
+}
+return res;
+```
 
 
 ---
