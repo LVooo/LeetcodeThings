@@ -58,7 +58,44 @@ for (int i = 0; i < s.size(); i ++)
 vector<int> count(26);
 ```
 如[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)
-- 
+
+## 2.2 纯哈希
+- 用```unordered_map<int, int> count```来记录数组中出现数字的个数
+```cpp
+int majorityElement(vector<int>& nums) {
+    unordered_map<int, int> count;
+    int n = nums.size();
+    for (int i = 0; i < n; i ++)
+    {
+        count[nums[i]]++;
+        if (count[nums[i]] > (n/2))
+        {
+            return nums[i];
+        }
+    }
+    return -1;
+}
+```
+如[169. 多数元素](https://leetcode.cn/problems/majority-element/) 
+
+- 记录数组中存在元素的下标，满足对应条件
+```cpp
+bool containsNearbyDuplicate(vector<int>& nums, int k) {
+    int n = nums.size();
+    unordered_map<int, int> dict;
+    for (int i = 0; i < n; i ++)
+    {
+        int num = nums[i];
+        if (dict.count(num) && i - dict[num] <= k)
+        {
+            return true;
+        }
+        dict[num] = i;
+    }
+    return false;
+}
+```
+如[219. 存在重复元素 II](https://leetcode.cn/problems/contains-duplicate-ii/)
 
 
 ---
