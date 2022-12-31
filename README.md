@@ -290,6 +290,10 @@ int countHomogenous(string s) {
 }
 ```
 
+### 3.8 排序做法
+如[2037. 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone/description/)  
+可以先对数组进行**排序**后再遍历，找对位差
+
 ---
 ## 4. 数学
 ### 4.1 进制转换

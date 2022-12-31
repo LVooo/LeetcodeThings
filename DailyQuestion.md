@@ -29,6 +29,8 @@
 long long left = abs(accumulate(nums.begin(), nums.end(), 0l) - goal); // 0L代表返回的和是长整型
 return left / limit + (left % limit != 0); // 记住这个求剩余数的公式！！
 ```
+- **12.31：**[2037. 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone/description/)  
+对数组进行排序后再遍历，找对位差
 
 ## **位运算**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
