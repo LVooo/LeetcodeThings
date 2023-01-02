@@ -21,7 +21,7 @@ int x = ia - 48; // 输出0
 ```
 如[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/) 
 - **模拟加减**
-一次遍历找标志性+或—来对结果进行加减，使用字符串的find函数
+一次遍历找标志性+或—来对结果进行加减，使用字符串的**find**函数
 ```cpp
 operation.find('-') != string::npos
 ```
@@ -292,7 +292,11 @@ int countHomogenous(string s) {
 
 ### 3.8 排序做法
 如[2037. 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone/description/)  
-可以先对数组进行**排序**后再遍历，找对位差
+可以先对数组进行**排序**后再遍历，找对位差  
+
+如[268. 丢失的数字](https://leetcode.cn/problems/missing-number/)  
+与上题类似，同样可以先排序在找未连续出现的差值  
+数组**find**查找：```find(nums.begin(), nums.end(), i) != nums.end()```
 
 ---
 ## 4. 数学
