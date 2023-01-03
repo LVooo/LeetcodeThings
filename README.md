@@ -10,7 +10,7 @@ coordinates[0] - 'a'
 如[1812. 判断国际象棋棋盘中一个格子的颜色](https://leetcode.cn/problems/determine-color-of-a-chessboard-square/description/)
 
 ### 1.2 模拟
-- 用字符串模拟数字串。  
+- **用字符串模拟数字串**    
 int类型到字符串的转换：```to_string()```  
 字符串类型转int：```stoi()```  
 字符或字符串类型到int类型的转换：```(c - 'a') (c - '0')```or通过ascii码转换
@@ -20,12 +20,23 @@ int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
 如[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/) 
-- **模拟加减**
+ 
+查看一段字符串中存在的数字是否是遵循严格递增的；因为是字符串所以要注意连续数字即如何把两个数字的字符合成一个数
+```cpp
+while (pos < n && isdigit(s[pos]))
+{
+    cur = cur*10 + s[pos] - '0';
+    pos ++;
+}
+```
+如[2042. 检查句子中的数字是否递增](https://leetcode.cn/problems/check-if-numbers-are-ascending-in-a-sentence/) 
+- **模拟加减**  
 一次遍历找标志性+或—来对结果进行加减，使用字符串的**find**函数
 ```cpp
 operation.find('-') != string::npos
 ```
 如[2011. 执行操作后的变量值](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/)  
+
 
 ### 1.3 贪心
 - **字符串合并最大**  
