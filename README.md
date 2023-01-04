@@ -59,6 +59,25 @@ for (int i = 0; i < s.size(); i ++)
     }
 ```
 如[2027. 转换字符串的最少操作次数](https://leetcode.cn/problems/minimum-moves-to-convert-string/) 
+- **二分**
+如[1802. 有界数组中指定下标处的最大值](https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array/description/)  
+贪心＋二分+等差数列的一道题，合理运用求和公式，二分夹出来的为最大值（尽管判断条件是拿index去找的左右求和，但用的最大值是mid，因为这里假设了index的数为最大值），注意返回长整型long。  
+等差公式：
+```cpp
+long cal(int big, int length) // 注意返回long
+{
+    if (big > length)
+    {
+        int small = big - length;
+        return (long) (big - 1 + small) * length / 2; // 求和公式(a1+an)*n/2
+    }
+    else
+    {
+        int ones = length - (big - 1); // 大于等于index的数通通为1，累加起来
+        return (long) big * (big - 1) / 2 + ones; // n*(n-1)*d/2 此时公差d为1；n(n-1)/2是从1加到n-1的和，n*(n+1)/2是从1加到n的和
+    }
+}
+```
 
 
 ---
