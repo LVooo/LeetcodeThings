@@ -15,6 +15,8 @@
 拿两个字符串做排序合并时，可以用while两个字符串遍历是否到结尾当判断条件。本题因为要找后缀和最大的，所以当遍历到i和j的元素相等时需要考虑他们后面的元素谁更大；此时加入k来遍历到他们后缀不同的位置，判断大小进行push_back操作即可。最后别忘了加上没有遍历完的那个的剩余元素。  
 - **12.27**[2027. 转换字符串的最少操作次数](https://leetcode.cn/problems/minimum-moves-to-convert-string/)  
 贪心模拟不重复滑动窗口只需一次遍历如果找到对应元素直接```i += 2```即可
+- **1.4**[1802. 有界数组中指定下标处的最大值](https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array/description/)  
+贪心＋二分+等差数列的一道题，找到中点最大值，左右分别递减1求和后小于最大Sum值即可，注意减到1之后后面的数就都为1了
 
 ## **循环遍历**
 - **12.12：**[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)  
@@ -54,6 +56,15 @@ int x = ia - 48; // 输出0
 一次遍历找标志性+或—来对结果进行加减，使用字符串的find函数
 ```cpp
 operation.find('-') != string::npos
+```
+- [2042. 检查句子中的数字是否递增](https://leetcode.cn/problems/check-if-numbers-are-ascending-in-a-sentence/)  
+查看一段字符串中存在的数字是否是遵循严格递增的；因为是字符串所以要注意连续数字即如何把两个数字的字符合成一个数
+```cpp
+while (pos < n && isdigit(s[pos]))
+{
+    cur = cur*10 + s[pos] - '0';
+    pos ++;
+}
 ```
 
 ## **字符串匹配**

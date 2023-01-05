@@ -82,14 +82,14 @@ long cal(int big, int length) // 注意返回long
 
 ---
 ## 2. 哈希表
-## 2.1 用数组vector模拟哈希表计数
+### 2.1 用数组vector模拟哈希表计数
 当涉及26位字母计数时，可以使用vector来模拟26位字母哈希表，每一位代表对应字母，当出现一次时对应位置数值加1，
 ```cpp
 vector<int> count(26);
 ```
 如[1781. 所有子字符串美丽值之和](https://leetcode.cn/problems/sum-of-beauty-of-all-substrings/description/)
 
-## 2.2 纯哈希
+### 2.2 纯哈希
 - 用```unordered_map<int, int> count```来记录数组中出现数字的个数
 ```cpp
 int majorityElement(vector<int>& nums) {
@@ -126,6 +126,17 @@ bool containsNearbyDuplicate(vector<int>& nums, int k) {
 }
 ```
 如[219. 存在重复元素 II](https://leetcode.cn/problems/contains-duplicate-ii/)
+
+### 2.3 哈希集合
+可以用```unordered_set<int>```哈希集合来存储数组中的元素再用```s2.count(s1中的num)```来判断两集合是否有相同元素
+```cpp
+unordered_set<int> s1, s2;
+for (auto &num : nums1)
+{
+    s1.insert(num);
+}
+```
+如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
 
 
 ---
@@ -327,6 +338,33 @@ int countHomogenous(string s) {
 如[268. 丢失的数字](https://leetcode.cn/problems/missing-number/)  
 与上题类似，同样可以先排序在找未连续出现的差值  
 数组**find**查找：```find(nums.begin(), nums.end(), i) != nums.end()```
+
+### 3.9 排序+双指针
+如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)  
+可以给两个数组排序之后，利用两个指针分别指向两个排序后数组的头，依次遍历，遇到相同元素就放入答案中，并使两个指针同时++；否则就令指向较小元素的指针++
+```cpp
+while (i < nums1.size() && j < nums2.size())
+{
+    if (nums1[i] == nums2[j])
+    {
+        if (!res.size() || res.back() != nums1[i]) // 通过最后一位元素与新的num不相等来去重，前提是数组里得有元素
+        {
+            res.emplace_back(nums1[i]);
+        }
+        i ++;
+        j ++;
+    }
+    else if (nums1[i] > nums2[j])
+    {
+        j ++;
+    }
+    else
+    {
+        i ++;
+    }
+}
+```
+
 
 ---
 ## 4. 数学
