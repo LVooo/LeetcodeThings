@@ -1,4 +1,4 @@
-# LeetcodeThings
+ # LeetcodeThings
 ## *随笔（C++）*
 &nbsp;
 ## 1. 字符串
@@ -422,6 +422,18 @@ int minimumBoxes(int n) {
         cur ++;
     }
     return (i - 1)*i/2 + j;
+}
+```
+
+### 4.4 模拟
+- **取各位数字之和为奇数或偶数**  
+如[2180. 统计各位数字之和为偶数的整数个数](https://leetcode.cn/problems/count-integers-with-even-digit-sum/)  
+对一个整数取余10即为它个位上的数字，再对它除以10下次再取余则能得到它十位上的数字
+```cpp
+while (x)
+{
+    sum += x % 10;
+    x /= 10;
 }
 ```
 
