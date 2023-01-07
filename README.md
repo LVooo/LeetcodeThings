@@ -365,6 +365,34 @@ while (i < nums1.size() && j < nums2.size())
 }
 ```
 
+### 3.10 滑动窗口
+如[1658. 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/)  
+移除的前缀和加上后缀和的和恰好等于x；可以使用left表示前缀的边界，如果left=-1则代表空前缀，如果right=n则代表空后缀。当left右移时，为了控制和为x，right也应右移，类似于滑动窗口。  
+初始设left=-1，right=0代表选择了空前缀，整个数组作为后缀，使用lsum和rsum记录前缀和后缀和；那么当lsum+rsum = x的时候即为一组答案，结果取min
+```cpp
+int right = 0;
+int lsum = 0, rsum = sum;
+int ans = n + 1;
+
+for (int left = -1; left < n; left ++)
+{
+    if (left != -1)
+    {
+        lsum += nums[left];
+    }
+
+    while (right < n && (lsum + rsum > x))
+    {
+        rsum -= nums[right++];
+    }
+
+    if (lsum + rsum == x)
+    {
+        ans = min(ans, n - right + left + 1);
+    }
+}
+```
+
 
 ---
 ## 4. 数学

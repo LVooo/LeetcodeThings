@@ -123,3 +123,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ## **数学**
 - **1.6：**[2180. 统计各位数字之和为偶数的整数个数](https://leetcode.cn/problems/count-integers-with-even-digit-sum/)  
 对一个整数取余10即为它个位上的数字，再对它除以10下次再取余则能得到它十位上的数字
+
+## **滑动窗口**
+- **1.7：**[1658. 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/)  
+移除的前缀和加上后缀和的和恰好等于x；可以使用left表示前缀的边界，如果left=-1则代表空前缀，如果right=n则代表空后缀。当left右移时，为了控制和为x，right也应右移，类似于滑动窗口。
