@@ -66,6 +66,18 @@ while (pos < n && isdigit(s[pos]))
     pos ++;
 }
 ```
+- **1.8：**[2185. 统计包含给定前缀的字符串](https://leetcode.cn/problems/counting-words-with-a-given-prefix/description/)  
+可以用compare函数比较两个字符串是否相等
+```cpp
+if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，包含字符，与哪个字符串进行比较；如果相等值为0
+    res++;
+}
+```
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/counting-words-with-a-given-prefix/solutions/2047256/tong-ji-bao-han-gei-ding-qian-zhui-de-zi-aaq7/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 ## **字符串匹配**
 - **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  

@@ -20,8 +20,8 @@ int ia = (int) a; // 输出48，因为ascii码的数字0从48开始
 int x = ia - 48; // 输出0
 ```
 如[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/) 
- 
-查看一段字符串中存在的数字是否是遵循严格递增的；因为是字符串所以要注意连续数字即如何把两个数字的字符合成一个数
+- **查看一段字符串中存在的数字是否是遵循严格递增的**  
+因为是字符串所以要注意连续数字即如何把两个数字的字符合成一个数
 ```cpp
 while (pos < n && isdigit(s[pos]))
 {
@@ -35,7 +35,15 @@ while (pos < n && isdigit(s[pos]))
 ```cpp
 operation.find('-') != string::npos
 ```
-如[2011. 执行操作后的变量值](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/)  
+如[2011. 执行操作后的变量值](https://leetcode.cn/problems/final-value-of-variable-after-performing-operations/) 
+- **字符串比较**    
+可以用compare函数比较两个字符串是否相等
+```cpp
+if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，包含字符，与哪个字符串进行比较；如果相等值为0
+    res++;
+}
+``` 
+如[2185. 统计包含给定前缀的字符串](https://leetcode.cn/problems/counting-words-with-a-given-prefix/description/)
 
 
 ### 1.3 贪心
