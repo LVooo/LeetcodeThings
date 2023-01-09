@@ -149,7 +149,8 @@ for (auto &num : nums1)
 
 ---
 ## 3. 数组
-### 3.1 模拟全字母
+### 3.1 模拟
+- **模拟全字母**：  
 用vector数组来表示26位字母位数，每出现一次在对应位置为true（或计数+1）
 ```cpp
 vector<int> exist(26);
@@ -158,6 +159,11 @@ for (auto c : sentence) {
 }
 ```
 如[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)
+- **模拟数学运算**
+可以使用```iota()```函数来初始化数组从0到n  
+可以使用```if(i & 1)```可以位运算来判断奇偶，**奇数** i 的最低位是1，**偶数** i 的最低位是0  
+如[1806. 还原排列的最少操作步数](https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/)  
+复制原数组，进行一些操作变换使之再回到原数组所需要的操作步数；可以初始化相同的两个数组，改变其中一个另一个则为目标原数组
 
 ### 3.2 贪心
 - **在数组原位置操作**  
