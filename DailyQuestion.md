@@ -33,6 +33,8 @@ return left / limit + (left % limit != 0); // 记住这个求剩余数的公式�
 ```
 - **12.31：**[2037. 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone/description/)  
 对数组进行排序后再遍历，找对位差
+- **1.9：**[1806. 还原排列的最少操作步数](https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/)  
+复制原数组，进行一些操作变换使之再回到原数组所需要的操作步数
 
 ## **位运算**
 - **12.13：**[1832. 判断句子是否为全字母句](https://leetcode.cn/problems/check-if-the-sentence-is-pangram/description/)

@@ -407,6 +407,24 @@ for (int left = -1; left < n; left ++)
 }
 ```
 
+### 3.11 单调栈
+如[496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/description/)  
+求下一个更大元素这种题型时可以使用单调栈；用map来存储一个数组每个数对应的右边最大的那个数，用单调栈来存储最大的那个数。  
+倒序遍历，当出现数字比栈中栈顶元素大时，就遍历栈弹出元素直到栈为空或者遍历到比当前数字大的元素；如果栈为空则对应哈希map中的值为-1否则就为栈顶元素。最后再遍历另一个数组，通过哈希map一次遍历就能得到所有更大元素。
+```cpp
+unordered_map<int, int> hash;
+stack<int> stk;
+for (int i = nums2.size() - 1; i >= 0; i --)
+{
+    while (!stk.empty() && nums2[i] > stk.top())
+    {
+        stk.pop();
+    }
+    hash[nums2[i]] = stk.empty() ? -1 : stk.top();
+    stk.push(nums2[i]);
+}
+```
+
 
 ---
 ## 4. 数学
