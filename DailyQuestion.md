@@ -141,3 +141,7 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ## **滑动窗口**
 - **1.7：**[1658. 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/)  
 移除的前缀和加上后缀和的和恰好等于x；可以使用left表示前缀的边界，如果left=-1则代表空前缀，如果right=n则代表空后缀。当left右移时，为了控制和为x，right也应右移，类似于滑动窗口。
+
+## **哈希表**
+- **1.11：**[2283. 判断一个数的数字计数是否等于数位的值](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)  
+字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表中；查找对应值时记得也要使用```nums[i] - '0'```

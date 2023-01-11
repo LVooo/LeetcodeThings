@@ -146,6 +146,10 @@ for (auto &num : nums1)
 ```
 如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
 
+## 2.4 字符转换  
+字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表```unordered_map<int, int> hash```中；查找对应值时记得也要使用```nums[i] - '0'```
+如[2283. 判断一个数的数字计数是否等于数位的值](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)
+
 
 ---
 ## 3. 数组
