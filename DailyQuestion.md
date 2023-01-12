@@ -75,11 +75,8 @@ if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，
     res++;
 }
 ```
-
-作者：力扣官方题解
-链接：https://leetcode.cn/problems/counting-words-with-a-given-prefix/solutions/2047256/tong-ji-bao-han-gei-ding-qian-zhui-de-zi-aaq7/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+- **1.12：**[1807. 替换字符串中的括号内容](https://leetcode.cn/problems/evaluate-the-bracket-pairs-of-a-string/description/)  
+熟练使用哈希计数以及字符串模拟；可以开创新的字符串来存储结果数据
 
 ## **字符串匹配**
 - **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  

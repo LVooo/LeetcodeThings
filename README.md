@@ -44,6 +44,21 @@ if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，
 }
 ``` 
 如[2185. 统计包含给定前缀的字符串](https://leetcode.cn/problems/counting-words-with-a-given-prefix/description/)
+- **！模拟替换操作**  
+熟练使用哈希计数以及字符串模拟；可以开创新的字符串来存储结果数据  
+```cpp
+if (hash.count(key))
+{
+    res += hash[key];
+}
+else
+{
+    res += '?';
+}
+flag = false;
+key.clear();
+```
+如[1807. 替换字符串中的括号内容](https://leetcode.cn/problems/evaluate-the-bracket-pairs-of-a-string/description/)
 
 
 ### 1.3 贪心
