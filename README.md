@@ -161,9 +161,32 @@ for (auto &num : nums1)
 ```
 如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
 
-## 2.4 字符转换  
-字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表```unordered_map<int, int> hash```中；查找对应值时记得也要使用```nums[i] - '0'```
+### 2.4 字符转换  
+字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表```unordered_map<int, int> hash```中；查找对应值时记得也要使用```nums[i] - '0'```  
 如[2283. 判断一个数的数字计数是否等于数位的值](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)
+
+### 2.5 目标字符串  
+拿空间换时间，建立两个哈希表分别对应两个字符串，最后遍历目标字符串找对应字符出现次数的最小公倍数即为答案
+```cpp
+unordered_map<char, int> hashs, hasht;
+for (auto &c : s)
+{
+    hashs[c] ++;
+}
+
+for (auto &t : target)
+{
+    hasht[t] ++;
+}
+
+int res = INT_MAX;
+for (auto &t : target)
+{
+    res = min(res, hashs[t] / hasht[t]);   
+}
+return res;
+```
+如[2287. 重排字符形成目标字符串](https://leetcode.cn/problems/rearrange-characters-to-make-target-string/)
 
 
 ---

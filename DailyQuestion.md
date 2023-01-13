@@ -142,3 +142,6 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ## **哈希表**
 - **1.11：**[2283. 判断一个数的数字计数是否等于数位的值](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)  
 字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表中；查找对应值时记得也要使用```nums[i] - '0'```
+
+- **1.13：**[2287. 重排字符形成目标字符串](https://leetcode.cn/problems/rearrange-characters-to-make-target-string/)  
+拿空间换时间，建立两个哈希表分别对应两个字符串，最后遍历目标字符串找对应字符出现次数的最小公倍数即为答案
