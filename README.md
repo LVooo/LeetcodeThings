@@ -205,7 +205,9 @@ for (auto c : sentence) {
 可以使用```iota()```函数来初始化数组从0到n  
 可以使用```if(i & 1)```可以位运算来判断奇偶，**奇数** i 的最低位是1，**偶数** i 的最低位是0  
 如[1806. 还原排列的最少操作步数](https://leetcode.cn/problems/minimum-number-of-operations-to-reinitialize-a-permutation/description/)  
-复制原数组，进行一些操作变换使之再回到原数组所需要的操作步数；可以初始化相同的两个数组，改变其中一个另一个则为目标原数组
+复制原数组，进行一些操作变换使之再回到原数组所需要的操作步数；可以初始化相同的两个数组，改变其中一个另一个则为目标原数组  
+如[2293. 极大极小游戏](https://leetcode.cn/problems/min-max-game/)  
+在循环外开辟的数组vector容易内存泄漏，因为如果要重复使用到索引的话需要提前分配空间`vector<int> newNums(nums.size()/2);`
 
 ### 3.2 贪心
 - **在数组原位置操作**  

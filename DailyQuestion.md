@@ -44,7 +44,7 @@ return left / limit + (left % limit != 0); // 记住这个求剩余数的公式�
 - **1.01：**[2351. 第一个出现两次的字母](https://leetcode.cn/problems/first-letter-to-appear-twice/)  
 找一个字符串中最先出现两次的字母，可以用哈希表或者位运算
 
-## **字符串模拟**
+## **模拟**
 - **12.15：**[1945. 字符串转化后的各位数字之和](https://leetcode.cn/problems/sum-of-digits-of-string-after-convert/description/)  
 int类型到字符串的转换：```to_string()```  
 字符串类型转int：```stoi()```  
@@ -77,6 +77,8 @@ if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，
 ```
 - **1.12：**[1807. 替换字符串中的括号内容](https://leetcode.cn/problems/evaluate-the-bracket-pairs-of-a-string/description/)  
 熟练使用哈希计数以及字符串模拟；可以开创新的字符串来存储结果数据
+- **1.15：**[2293. 极大极小游戏](https://leetcode.cn/problems/min-max-game/)  
+在循环外开辟的数组vector容易内存泄漏，因为如果要重复使用到索引的话需要提前分配空间`vector<int> newNums(nums.size()/2);`
 
 ## **字符串匹配**
 - **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  
