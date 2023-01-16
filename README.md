@@ -274,6 +274,52 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 }
 ```
 如[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/) 
+如[1813. 句子相似性 III](https://leetcode.cn/problems/sentence-similarity-iii/)  
+利用双指针找出其中小的字符串通过**一次**插入是否能组成大的字符串  
+此题首先要对字符串进行分割得到两个由空格分割后的字符串数组，再在数组中进行比对查找  
+```cpp
+// 字符串分割：
+vector<string> split(const string& s, char target)
+{
+    vector<string> res;
+    int pos = 0;
+    string value = "";
+    while(pos < s.size())
+    {
+        while (pos < s.size() && s[pos] != target)
+        {
+            value += s[pos];
+            pos ++;
+        }
+        res.push_back(value);
+        value = "";
+        pos ++;
+    }
+    return res;
+}
+
+// 双指针查找：
+bool areSentencesSimilar(string sentence1, string sentence2) {
+    vector<string> s1 = split(sentence1, ' ');
+    vector<string> s2 = split(sentence2, ' ');
+
+    cout << s1.size() << " " << s2.size() << endl;
+
+    int i = 0, j = 0;
+    // 因为只能插入一次，不能前后都插入
+    while (i < s1.size() && i < s2.size() && s1[i] == s2[i]) // i从前往后对比
+    {
+        i ++;
+    }
+    while(j < s1.size() - i && j < s2.size() - i && s1[s1.size() - j - 1] == s2[s2.size() - j - 1]) // j从后往前对比
+    {
+        j ++;
+    }
+    cout << i << " " << j << endl;
+
+    return i + j == min(s1.size(), s2.size()); // 当遍历完的i和j相加等于最小的字符串长度后结果为true
+}
+```
 
 - **双指针指向单个数组**  
 使用while循环来限定i < j的判定条件，注意每层i++或j--的循环都要加上i小于等于j的判断条件否则会越界。如下面题目是找一个字符串左右两端相等的前缀和后缀和：
