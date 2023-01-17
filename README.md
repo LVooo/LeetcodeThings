@@ -59,6 +59,25 @@ flag = false;
 key.clear();
 ```
 如[1807. 替换字符串中的括号内容](https://leetcode.cn/problems/evaluate-the-bracket-pairs-of-a-string/description/)
+- **模拟栈**
+```cpp
+string removeDuplicates(string s) {
+    string stk = "";
+    for (char &c : s)
+    {
+        if (!stk.empty() && stk.back() == c) // C++最后一位索引不能用-1
+        {
+            stk.pop_back();
+        }
+        else
+        {
+            stk.push_back(c);
+        }
+    }
+    return stk;
+}
+```
+如[1047. 删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/)
 
 
 ### 1.3 贪心
@@ -162,8 +181,13 @@ for (auto &num : nums1)
 如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
 
 ### 2.4 字符转换  
-字符串转数字：```int k = num[i] - '0'```然后再把k当作键值对存入哈希表```unordered_map<int, int> hash```中；查找对应值时记得也要使用```nums[i] - '0'```  
+- **字符串转数字：**  
+```int k = num[i] - '0'```然后再把k当作键值对存入哈希表```unordered_map<int, int> hash```中；查找对应值时记得也要使用```nums[i] - '0'```  
 如[2283. 判断一个数的数字计数是否等于数位的值](https://leetcode.cn/problems/check-if-number-has-equal-digit-count-and-digit-value/)
+- **年月日转换：**  
+年份转换：`int year = stoi(date.substr(0, 4));`  
+每月多少天的数组：`vector<int> arr = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};`  
+如[1154. 一年中的第几天](https://leetcode.cn/problems/day-of-the-year/description/)
 
 ### 2.5 目标字符串  
 拿空间换时间，建立两个哈希表分别对应两个字符串，最后遍历目标字符串找对应字符出现次数的最小公倍数即为答案
@@ -187,6 +211,29 @@ for (auto &t : target)
 return res;
 ```
 如[2287. 重排字符形成目标字符串](https://leetcode.cn/problems/rearrange-characters-to-make-target-string/)
+
+### 2.6 分词
+可以设置一个起始位置变量和一个结束位置变量，再使用`substr`来截取一段字符串单词
+```cpp
+vector<string> words;
+int s = 0, e = 0, n = text.size();
+while (s < n)
+{
+    if (s < n && text[s] == ' ')
+    {
+        s ++;
+    }
+
+    e = s + 1;
+    while (e < n && text[e] != ' ')
+    {
+        e ++;
+    }
+    words.push_back(text.substr(s, e-s));
+    s = e+1;
+}
+```
+如[1078. Bigram 分词](https://leetcode.cn/problems/occurrences-after-bigram/description/)
 
 
 ---
@@ -586,6 +633,63 @@ while (x)
     x /= 10;
 }
 ```
+
+### 4.5 逆置
+- **统计原数字与其逆置后数字相加和**
+如[1814. 统计一个数组中好对子的数目](https://leetcode.cn/problems/count-nice-pairs-in-an-array/description/)  
+通过给出的公式我们可以将其转换变为f(i) = f(j)的形式，f(i)代表数组i位置元素与其逆置后元素的和
+```cpp
+int countNicePairs(vector<int>& nums) {
+    const int MOD = 1e9 + 7;
+    unordered_map<int, int> hash; // 存取元素与其逆置和的数量
+    long long res = 0; // 注意数据类型
+    for (auto &num : nums)
+    {
+        int temp = num, j = 0;
+        while (temp > 0) // 逆置元素方法
+        {
+            j = j*10 + temp % 10;
+            temp = temp/10;
+        }
+        res += hash[num - j]; 
+        hash[num - j] ++; // 存取为下个元素做比对
+    }
+
+    return res % MOD;
+}
+```
+
+### 4.6 最大公约数
+- **求最大公因子**  
+我们需要**枚举前缀串**来判断是否相加后的前缀串与字符串相同，那么如何获得前缀串呢？
+```cpp
+bool check(string x, string str)
+{
+    int len = str.size() / x.size();
+    string res = "";
+    for (int i = 0; i < len; i ++)
+    {
+        res += x; // 得到的前缀串累加和
+    }
+    return res == str;
+}
+
+string gcdOfStrings(string str1, string str2) {
+    int n1 = str1.size(), n2 = str2.size();
+    for (int i = min(n1, n2); i > 0; i --) // 此处可以用C++自带_gcd()函数优化
+    {
+        if (n1 % i == 0 && n2 % i == 0)
+        {
+            string x = str1.substr(0, i); // 得到的前缀串
+            if (check(x, str1) && check(x, str2))
+                return x;
+        }
+    }
+    return "";
+}
+```
+如[1071. 字符串的最大公因子](https://leetcode.cn/problems/greatest-common-divisor-of-strings/description/)
+
 
 ---
 ## 5. 位运算

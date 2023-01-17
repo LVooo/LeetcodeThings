@@ -132,10 +132,21 @@ bool canChoose(vector<vector<int>>& groups, vector<int>& nums) {
 ## **双指针**
 - **12.28：**[1750. 删除字符串两端相同字符后的最短长度](https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/)  
 利用双指针删除相同的前缀和后缀，要多加注意几个判定条件。
+- **1.16：**[1813. 句子相似性 III](https://leetcode.cn/problems/sentence-similarity-iii/)  
+利用双指针找出其中小的字符串通过**一次**插入是否能组成大的字符串
 
 ## **数学**
 - **1.6：**[2180. 统计各位数字之和为偶数的整数个数](https://leetcode.cn/problems/count-integers-with-even-digit-sum/)  
 对一个整数取余10即为它个位上的数字，再对它除以10下次再取余则能得到它十位上的数字
+- **1.17：**[1814. 统计一个数组中好对子的数目](https://leetcode.cn/problems/count-nice-pairs-in-an-array/description/)  
+通过给出的公式我们可以将其转换变为f(i) = f(j)的形式，f(i)代表数组i位置元素与其逆置后元素的和，逆置方法：
+```cpp
+while (temp > 0) // 逆置元素方法，temp代表原数据的备份，j代表逆序后的值
+{
+    j = j*10 + temp % 10;
+    temp = temp/10;
+}
+```
 
 ## **滑动窗口**
 - **1.7：**[1658. 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/)  
