@@ -79,6 +79,12 @@ if (word.compare(0, pref.size(), pref) == 0) { // 参数分别为起始索引，
 熟练使用哈希计数以及字符串模拟；可以开创新的字符串来存储结果数据
 - **1.15：**[2293. 极大极小游戏](https://leetcode.cn/problems/min-max-game/)  
 在循环外开辟的数组vector容易内存泄漏，因为如果要重复使用到索引的话需要提前分配空间`vector<int> newNums(nums.size()/2);`
+- **1.19：**[2299. 强密码检验器 II](https://leetcode.cn/problems/strong-password-checker-ii/description/)  
+为每个需要满足的条件判断一次  
+特殊字符可以用vector或者set存储，如果是vector的话就用`find(match.begin(), match.end(), pwd) != match.end()`查找，如果是set的话可以用`match.count(pwd)`查找  
+小写英文判断：`islower(pwd)`  
+大写英文判断：`isupper(pwd)`  
+是否是数字判断：`isdigit(pwd)`
 
 ## **字符串匹配**
 - **12.17：**[1764. 通过连接另一个数组的子数组得到一个数组](https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/description/)  

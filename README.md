@@ -78,6 +78,37 @@ string removeDuplicates(string s) {
 }
 ```
 如[1047. 删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/)
+- **模拟条件判断**  
+为每个需要满足的条件判断一次  
+特殊字符可以用vector或者set存储，如果是vector的话就用`find(match.begin(), match.end(), pwd) != match.end()`查找，如果是set的话可以用`match.count(pwd)`查找  
+小写英文判断：`islower(pwd)`  
+大写英文判断：`isupper(pwd)`  
+是否是数字判断：`isdigit(pwd)` 
+```cpp
+vector<char> match = {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'};
+bool special = false, lowStr = false, upperStr = false, num = false;
+for (auto &pwd : password)
+{
+    if (find(match.begin(), match.end(), pwd) != match.end())
+    {
+        special = true;
+    }
+    else if (islower(pwd))
+    {
+        lowStr = true;
+    }
+    else if (isupper(pwd))
+    {
+        upperStr = true;
+    }
+    else if (isdigit(pwd))
+    {
+        num = true;
+    }
+}
+return special && lowStr && upperStr && num;
+``` 
+如[2299. 强密码检验器 II](https://leetcode.cn/problems/strong-password-checker-ii/description/)
 
 
 ### 1.3 贪心
