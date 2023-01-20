@@ -201,7 +201,7 @@ bool containsNearbyDuplicate(vector<int>& nums, int k) {
 如[219. 存在重复元素 II](https://leetcode.cn/problems/contains-duplicate-ii/)
 
 ### 2.3 哈希集合
-可以用```unordered_set<int>```哈希集合来存储数组中的元素再用```s2.count(s1中的num)```来判断两集合是否有相同元素
+- 可以用```unordered_set<int>```哈希集合来存储数组中的元素再用```s2.count(s1中的num)```来判断两集合是否有相同元素
 ```cpp
 unordered_set<int> s1, s2;
 for (auto &num : nums1)
@@ -210,6 +210,14 @@ for (auto &num : nums1)
 }
 ```
 如[349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/description/)
+- 建立哈希表用set存储用户分钟数再遍历哈希表将value存放到vector容器中，遍历哈希：
+```cpp
+for (auto &&[_, minutes] : hash) // 右值引用
+{
+    answer[minutes.size() - 1] ++;
+}
+```
+如[1817. 查找用户活跃分钟数](https://leetcode.cn/problems/finding-the-users-active-minutes/description/)  
 
 ### 2.4 字符转换  
 - **字符串转数字：**  
