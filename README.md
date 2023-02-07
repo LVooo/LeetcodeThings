@@ -110,7 +110,6 @@ return special && lowStr && upperStr && num;
 ``` 
 如[2299. 强密码检验器 II](https://leetcode.cn/problems/strong-password-checker-ii/description/)
 
-
 ### 1.3 贪心
 - **字符串合并最大**  
 拿两个字符串做排序合并时，可以用while两个字符串遍历是否到结尾当判断条件```while (word1[i] != '\0' && word2[j] != '\0')```  
@@ -151,6 +150,13 @@ long cal(int big, int length) // 注意返回long
     }
 }
 ```
+
+### 1.4 ASCII码计算
+可以使用ASCII码对数字和字符进行转换计算
+```cpp
+res += char((s[i] - '0') * 10 + (s[i+1] - '1') + 'a'); // 数字转换成对应字符时需要加上a的ASCII值
+```
+如[1309. 解码字母到整数映射](https://leetcode.cn/problems/decrypt-string-from-alphabet-to-integer-mapping/description/)
 
 
 ---
